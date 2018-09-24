@@ -381,3 +381,10 @@ value as the deserialization result."
   (catch Throwable t
     (.printStackTrace t)
     (throw t)))
+
+(defn- logical-dispatch
+  [logical-type schema datum]
+  logical-type)
+
+(defmulti read-logical logical-dispatch)
+(defmulti write-logical logical-dispatch)
