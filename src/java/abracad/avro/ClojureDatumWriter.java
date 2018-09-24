@@ -2,6 +2,7 @@ package abracad.avro;
 
 import java.io.IOException;
 
+import org.apache.avro.LogicalType;
 import org.apache.avro.Schema;
 import org.apache.avro.UnresolvedUnionException;
 import org.apache.avro.generic.GenericDatumWriter;
@@ -22,6 +23,7 @@ private static class Vars {
     private static final Var resolveUnion = RT.var(NS, "resolve-union");
     private static final Var writeBytes = RT.var(NS, "write-bytes");
     private static final Var writeFixed = RT.var(NS, "write-fixed");
+    private static final Var writeLogical = RT.var("abracad.avro", "write-logical");
 
     static {
         RT.var("clojure.core", "require").invoke(Symbol.intern(NS));
@@ -42,6 +44,8 @@ ClojureDatumWriter(Schema schema) {
 public void
 write(Schema schema, Object datum, Encoder out) throws IOException {
     try {
+        LogicalType lt = schema.getLogicalType();
+        if (lt != null) datum = Vars.writeLogical.invoke(lt.getName(), schema, datum);
         switch (schema.getType()) {
         case INT: out.writeInt(RT.intCast(datum)); break;
         case LONG: out.writeLong(RT.longCast(datum)); break;

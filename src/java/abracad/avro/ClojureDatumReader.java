@@ -2,6 +2,7 @@ package abracad.avro;
 
 import java.io.IOException;
 
+import org.apache.avro.LogicalType;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericDatumReader;
 import org.apache.avro.io.Decoder;
@@ -22,6 +23,7 @@ private static class Vars {
     private static final Var readMap = RT.var(NS, "read-map");
     private static final Var readFixed = RT.var(NS, "read-fixed");
     private static final Var readBytes = RT.var(NS, "read-bytes");
+    private static final Var readLogical = RT.var("abracad.avro", "read-logical");
 
     static {
         RT.var("clojure.core", "require").invoke(Symbol.intern(NS));
@@ -47,7 +49,9 @@ ClojureDatumReader(Schema writer, Schema reader) {
 public Object
 read(Object old, Schema expected, ResolvingDecoder in)
         throws IOException {
-    return super.read(old, expected, in);
+    Object datum = super.read(old, expected, in);
+    LogicalType lt = expected.getLogicalType();
+    return lt == null ? datum : Vars.readLogical.invoke(lt.getName(), expected, datum);
 }
 
 @Override
