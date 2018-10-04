@@ -20,7 +20,6 @@ private static class Vars {
     private static final Var readEnum = RT.var(NS, "read-enum");
     private static final Var readArray = RT.var(NS, "read-array");
     private static final Var readMap = RT.var(NS, "read-map");
-    private static final Var readFixed = RT.var(NS, "read-fixed");
     private static final Var readBytes = RT.var(NS, "read-bytes");
 
     static {
@@ -84,13 +83,6 @@ readString(Object old, Schema expected, Decoder in)
     return in.readString();
 }
 
-
-@Override
-protected Object
-readFixed(Object old, Schema expected, Decoder in)
-        throws IOException {
-    return Vars.readFixed.invoke(this, expected, in);
-}
 
 @Override
 protected Object

@@ -27,14 +27,7 @@ indicating schema name."
   "Return tuple of `(named?, readerf)` for provided Avro `schema` and
 schema name symbol `rname`."
   [^Schema schema rname]
-  (if-let [f (get avro/*avro-readers* rname)]
-    [false (record-reader f)]
-    (if-let [reader (.getProp schema "abracad.reader")]
-      (case reader
-        "vector" [false record-plain]
-        #_else   (throw (ex-info "unknown `abracad.reader`"
-                                 {:reader reader})))
-      [true record-plain])))
+  [true record-plain])
 
 (defn read-record
   [^ClojureDatumReader reader ^Schema expected ^ResolvingDecoder in]
@@ -96,19 +89,6 @@ schema name symbol `rname`."
              (let [n (.mapNext in)] (if-not (pos? n) m (recur m n)))
              (recur m n))))))))
 
-(defn read-fixed
-  [^ClojureDatumReader reader ^Schema expected ^Decoder in]
-  (let [size (.getFixedSize expected), bytes (byte-array size)]
-    (.readFixed in bytes 0 size)
-    bytes))
-
 (defn read-bytes
   [^ClojureDatumReader reader ^Schema expected ^Decoder in]
   (.array (.readBytes in nil)))
-
-;; Load namespaces in order to ensure Avro reader vars are available
-(doseq [ns (->> (vals avro/*avro-readers*)
-                (map #(-> ^Var % .-ns .-name))
-                (distinct)
-                (sort))]
-  (require ns))

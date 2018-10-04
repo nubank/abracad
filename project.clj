@@ -1,6 +1,6 @@
-(defproject nubank/abracad "0.4.15"
+(defproject lcodes/abracad-lite "0.4.16"
   :description "De/serialize Clojure data structures with Avro."
-  :url "http://github.com/damballa/abracad"
+  :url "http://github.com/lcodes/abracad"
   :licenses [{:name "Eclipse Public License"
               :url  "http://www.eclipse.org/legal/epl-v10.html"}
              {:name "Apache License, Version 2.0"
@@ -16,6 +16,7 @@
 
   :global-vars {*warn-on-reflection* true}
 
+  ;; TODO replace Cheshire with Jsonista?
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.apache.avro/avro "1.8.2"]
                  [cheshire/cheshire "5.6.1"]]
