@@ -2,6 +2,8 @@ package abracad.avro;
 
 import java.io.IOException;
 
+import org.apache.avro.Conversion;
+import org.apache.avro.LogicalType;
 import org.apache.avro.Schema;
 import org.apache.avro.UnresolvedUnionException;
 import org.apache.avro.generic.GenericDatumWriter;
@@ -19,9 +21,7 @@ private static class Vars {
     private static final Var writeRecord = RT.var(NS, "write-record");
     private static final Var writeEnum = RT.var(NS, "write-enum");
     private static final Var writeArray = RT.var(NS, "write-array");
-    private static final Var resolveUnion = RT.var(NS, "resolve-union");
     private static final Var writeBytes = RT.var(NS, "write-bytes");
-    private static final Var writeFixed = RT.var(NS, "write-fixed");
 
     static {
         RT.var("clojure.core", "require").invoke(Symbol.intern(NS));
@@ -42,13 +42,20 @@ ClojureDatumWriter(Schema schema) {
 public void
 write(Schema schema, Object datum, Encoder out) throws IOException {
     try {
-        switch (schema.getType()) {
-        case INT: out.writeInt(RT.intCast(datum)); break;
-        case LONG: out.writeLong(RT.longCast(datum)); break;
-        case FLOAT: out.writeFloat(RT.floatCast(datum)); break;
-        case DOUBLE: out.writeDouble(RT.doubleCast(datum)); break;
-        case BOOLEAN: out.writeBoolean(RT.booleanCast(datum)); break;
-        default: super.write(schema, datum, out); break;
+        LogicalType logicalType = schema.getLogicalType();
+        if (datum != null && logicalType != null) {
+            Conversion<?> conversion = getData().getConversionByClass(datum.getClass(), logicalType);
+            writeWithoutConversion(schema, convert(schema, logicalType, conversion, datum), out);
+        }
+        else {
+            switch (schema.getType()) {
+            case INT: out.writeInt(RT.intCast(datum)); break;
+            case LONG: out.writeLong(RT.longCast(datum)); break;
+            case FLOAT: out.writeFloat(RT.floatCast(datum)); break;
+            case DOUBLE: out.writeDouble(RT.doubleCast(datum)); break;
+            case BOOLEAN: out.writeBoolean(RT.booleanCast(datum)); break;
+            default: super.write(schema, datum, out); break;
+            }
         }
     } catch (NullPointerException e) {
         throw super.npe(e, " of " + schema.getFullName());
@@ -77,25 +84,10 @@ writeArray(Schema schema, Object datum, Encoder out)
 }
 
 @Override
-protected int
-resolveUnion(Schema union, Object datum) {
-    Object i = Vars.resolveUnion.invoke(this, union, datum);
-    if (i == null) throw new UnresolvedUnionException(union, datum);
-    return RT.intCast(i);
-}
-
-@Override
 protected void
 writeBytes(Object datum, Encoder out)
         throws IOException {
     Vars.writeBytes.invoke(this, datum, out);
-}
-
-@Override
-protected void
-writeFixed(Schema schema, Object datum, Encoder out)
-        throws IOException {
-    Vars.writeFixed.invoke(this, schema, datum, out);
 }
 
 }
