@@ -1,4 +1,4 @@
-(defproject nubank/abracad "0.4.16"
+(defproject nubank/abracad "0.4.17"
   :description "De/serialize Clojure data structures with Avro."
   :url "http://github.com/damballa/abracad"
   :licenses [{:name "Eclipse Public License"
