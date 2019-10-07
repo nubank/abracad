@@ -43,7 +43,12 @@
              :clojure-1-9 {:dependencies
                            [[org.clojure/clojure "1.9.0"]
                             [midje "1.9.1" :exclusions [org.clojure/clojure]]
-                            [nubank/matcher-combinators "0.2.1"]]}}
+                            [nubank/matcher-combinators "0.2.1"]]}
+             :clojure-1-10 {:dependencies
+                           [[org.clojure/clojure "1.10.1"]
+                            [midje "1.9.9" :exclusions [org.clojure/clojure]]
+                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [nubank/matcher-combinators "1.2.1"]]}}
 
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
