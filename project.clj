@@ -6,9 +6,9 @@
              {:name "Apache License, Version 2.0"
               :url  "http://www.apache.org/licenses/LICENSE-2.0.html"}]
 
-  :plugins [[codox/codox "0.6.4"]
+  :plugins [[codox/codox "0.10.7"]
             [lein-midje "3.2.1"]
-            [lein-cloverage "1.0.10"]
+            [lein-cloverage "1.1.2"]
             [lein-vanity "0.2.0"]]
 
   :repositories [["central" {:url "https://repo1.maven.org/maven2/" :snapshots false}]
@@ -16,15 +16,15 @@
 
   :global-vars {*warn-on-reflection* true}
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.apache.avro/avro "1.8.2"]
-                 [cheshire/cheshire "5.6.1"]]
+  :dependencies [[org.apache.avro/avro "1.9.1"]
+                 [cheshire/cheshire "5.9.0"]]
 
   :codox {:include [abracad.avro abracad.avro.edn]}
 
   :aliases {"test-all" ["with-profile" ~(str "clojure-1-7:"
                                              "clojure-1-8:"
-                                             "clojure-1-9")
+                                             "clojure-1-9:"
+                                             "clojure-1-10")
                         "midje"]
             "coverage" ["cloverage" "-s" "coverage"]
             "loc"      ["vanity"]}
