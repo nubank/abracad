@@ -30,20 +30,24 @@
             "loc"      ["vanity"]}
 
   :profiles {:dev         {:dependencies
-                           [[midje "1.9.1" :exclusions [org.clojure/clojure]]
-                            [nubank/matcher-combinators "0.2.1"]]}
+                           [[midje "1.9.9" :exclusions [org.clojure/clojure]]
+                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [nubank/matcher-combinators "1.2.1"]]}
              :clojure-1-7 {:dependencies
                            [[org.clojure/clojure "1.7.0"]
-                            [midje "1.9.1" :exclusions [org.clojure/clojure]]
+                            [midje "1.9.9" :exclusions [org.clojure/clojure]]
+                            [org.xerial.snappy/snappy-java "1.1.7.3"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-8 {:dependencies
                            [[org.clojure/clojure "1.8.0"]
-                            [midje "1.9.1" :exclusions [org.clojure/clojure]]
+                            [midje "1.9.9" :exclusions [org.clojure/clojure]]
+                            [org.xerial.snappy/snappy-java "1.1.7.3"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-9 {:dependencies
                            [[org.clojure/clojure "1.9.0"]
-                            [midje "1.9.1" :exclusions [org.clojure/clojure]]
-                            [nubank/matcher-combinators "0.2.1"]]}
+                            [midje "1.9.9" :exclusions [org.clojure/clojure]]
+                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [nubank/matcher-combinators "1.2.1"]]
              :clojure-1-10 {:dependencies
                            [[org.clojure/clojure "1.10.1"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
