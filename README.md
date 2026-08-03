@@ -1,5 +1,6 @@
 # abracad
 
+[![Clojars Project](https://img.shields.io/clojars/v/nubank/abracad.svg)](https://clojars.org/nubank/abracad)
 [![Build Status](https://travis-ci.org/nubank/abracad.svg?branch=master)](https://travis-ci.org/nubank/abracad)
 
 Abracad is a Clojure library for de/serializing Clojure data
@@ -17,7 +18,13 @@ Abracad is available on Clojars.  Add this `:dependency` to your
 Leiningen `project.clj`:
 
 ```clj
-[nubank/abracad "0.4.15"]
+[nubank/abracad "0.4.18"]
+```
+
+Or with deps.edn:
+
+```clj
+nubank/abracad {:mvn/version "0.4.18"}
 ```
 
 ## Usage
