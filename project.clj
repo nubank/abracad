@@ -16,6 +16,8 @@
 
   :global-vars {*warn-on-reflection* true}
 
+  :jvm-opts ["-Dorg.apache.avro.fastread=true"]
+
   :dependencies [[org.apache.avro/avro "1.10.1"]
                  [cheshire/cheshire "5.9.0"]]
 
@@ -31,27 +33,27 @@
 
   :profiles {:dev         {:dependencies
                            [[midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}
              :clojure-1-7 {:dependencies
                            [[org.clojure/clojure "1.7.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-8 {:dependencies
                            [[org.clojure/clojure "1.8.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-9 {:dependencies
                            [[org.clojure/clojure "1.9.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}
              :clojure-1-10 {:dependencies
                            [[org.clojure/clojure "1.10.1"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}}
 
   :source-paths ["src/clojure"]

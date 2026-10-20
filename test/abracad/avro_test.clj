@@ -5,10 +5,12 @@
             [clojure.test :refer :all]
             [matcher-combinators.midje :refer [match]]
             [midje.sweet :refer :all])
-  (:import [clojure.lang ExceptionInfo]
+  (:import [abracad.avro ClojureDatumReader]
+           [clojure.lang ExceptionInfo]
            [java.io FileInputStream]
            [java.net InetAddress]
            [org.apache.avro.file DataFileStream]
+           [org.apache.avro.io FastReaderBuilder]
            [org.apache.avro SchemaParseException]))
 
 (defn roundtrip-binary [schema & records]
@@ -61,6 +63,9 @@
                 , {'abracad.core-test/Example    #'->Example
                    'abracad.core-test/SubExample #'->SubExample}]
         (roundtrips schema records) => (match-duplicate-data [{:foo-foo "bar" :bar {:baz 0}}])))))
+
+(fact "the datum reader stays off Avro's fast reader, which would bypass the Clojure read overrides"
+  (FastReaderBuilder/isSupportedData (.getData ^ClojureDatumReader (avro/datum-reader 'long))) => false)
 
 (fact "we can encode/decode java objects when we implement the AvroSerializable protocol"
   (let [schema  (avro/parse-schema
