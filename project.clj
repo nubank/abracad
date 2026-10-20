@@ -12,7 +12,11 @@
             [lein-vanity "0.2.0"]]
 
   :repositories [["central" {:url "https://repo1.maven.org/maven2/" :snapshots false}]
-                 ["clojars" {:url "https://clojars.org/repo/"}]]
+                 ["clojars" {:url "https://clojars.org/repo/"}]
+                 ["publish" {:url           "https://clojars.org/repo"
+                             :username      :env/clojars_username
+                             :password      :env/clojars_passwd
+                             :sign-releases false}]]
 
   :global-vars {*warn-on-reflection* true}
 
