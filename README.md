@@ -1,6 +1,6 @@
 # abracad
 
-[![Build Status](https://travis-ci.org/nubank/abracad.svg?branch=master)](https://travis-ci.org/nubank/abracad)
+[![Clojure CI](https://github.com/nubank/abracad/actions/workflows/clojure.yml/badge.svg)](https://github.com/nubank/abracad/actions/workflows/clojure.yml)
 
 Abracad is a Clojure library for de/serializing Clojure data
 structures with Avro, leveraging the Java Avro implementation.
