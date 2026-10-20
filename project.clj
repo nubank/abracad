@@ -16,7 +16,6 @@
 
   :global-vars {*warn-on-reflection* true}
 
-  ;; Avro 1.12.1+ enables the fast reader by default; test that path on older Avro too
   :jvm-opts ["-Dorg.apache.avro.fastread=true"]
 
   :dependencies [[org.apache.avro/avro "1.10.1"]
