@@ -28,19 +28,22 @@ private static class Vars {
     }
 }
 
+// Avro's fast reader (on by default since 1.12.1) skips the read overrides
+// below, and it only takes data models that are exactly GenericData or
+// SpecificData. ClojureData keeps this reader off that path.
 public
 ClojureDatumReader() {
-    super(null, null);
+    super(null, null, ClojureData.get());
 }
 
 public
 ClojureDatumReader(Schema schema) {
-    super(schema, schema);
+    super(schema, schema, ClojureData.get());
 }
 
 public
 ClojureDatumReader(Schema writer, Schema reader) {
-    super(writer, reader);
+    super(writer, reader, ClojureData.get());
 }
 
 @Override
