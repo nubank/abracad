@@ -1,4 +1,4 @@
-(defproject nubank/abracad "0.4.18"
+(defproject nubank/abracad "0.5.0"
   :description "De/serialize Clojure data structures with Avro."
   :url "http://github.com/nubank/abracad"
   :licenses [{:name "Eclipse Public License"
@@ -16,9 +16,7 @@
 
   :global-vars {*warn-on-reflection* true}
 
-  :jvm-opts ["-Dorg.apache.avro.fastread=true"]
-
-  :dependencies [[org.apache.avro/avro "1.10.1"]
+  :dependencies [[org.apache.avro/avro "1.12.2"]
                  [cheshire/cheshire "5.9.0"]]
 
   :codox {:include [abracad.avro abracad.avro.edn]}
@@ -60,4 +58,4 @@
   :java-source-paths ["src/java"]
   :test-paths ["test/"]
 
-  :javac-options ["-target" "1.8" "-source" "1.8"])
+  :javac-options ["--release" "11"])
