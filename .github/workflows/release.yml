@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - '*'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/clojure.yml
+
+  release:
+    name: Publish on Clojars
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+      with:
+        distribution: 'temurin'
+        java-version: 11
+
+    - name: Install clojure tools
+      uses: DeLaGuardo/setup-clojure@6d46099eae24853c33c0482f2bb54edf4f1a4c74 # 13.7.0
+      with:
+        lein: 2.11.2
+
+    - name: Publish on Clojars
+      run: lein deploy publish
+      env:
+        CLOJARS_USERNAME: eng-prod-nubank
+        CLOJARS_PASSWD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}

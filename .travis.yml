@@ -1,5 +1,0 @@
-language: clojure
-lein: 2.7.1
-script: lein test-all
-jdk:
-  - openjdk8

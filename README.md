@@ -1,6 +1,6 @@
 # abracad
 
-[![Build Status](https://travis-ci.org/nubank/abracad.svg?branch=master)](https://travis-ci.org/nubank/abracad)
+[![Clojure CI](https://github.com/nubank/abracad/actions/workflows/clojure.yml/badge.svg)](https://github.com/nubank/abracad/actions/workflows/clojure.yml)
 
 Abracad is a Clojure library for de/serializing Clojure data
 structures with Avro, leveraging the Java Avro implementation.
@@ -181,6 +181,12 @@ reading, writing, and comparison in Hadoop MapReduce jobs.  Abracad
 0.4.0 and later provides a `ClojureData` class which can be passed to
 the `AvroJob/setDataModelClass` static method in order to map job Avro
 input and output directly to and from Clojure data structures.
+
+## Releasing
+
+Set the release version in `project.clj`, merge it to `master`, and push a
+tag with that version (for example `0.5.0`). The Release workflow runs the
+tests and publishes the jar to Clojars.
 
 ## License
 
