@@ -1,4 +1,4 @@
-(defproject nubank/abracad "0.4.18"
+(defproject nubank/abracad "0.5.0"
   :description "De/serialize Clojure data structures with Avro."
   :url "http://github.com/nubank/abracad"
   :licenses [{:name "Eclipse Public License"
@@ -16,7 +16,7 @@
 
   :global-vars {*warn-on-reflection* true}
 
-  :dependencies [[org.apache.avro/avro "1.10.1"]
+  :dependencies [[org.apache.avro/avro "1.12.2"]
                  [cheshire/cheshire "5.9.0"]]
 
   :codox {:include [abracad.avro abracad.avro.edn]}
@@ -31,31 +31,31 @@
 
   :profiles {:dev         {:dependencies
                            [[midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}
              :clojure-1-7 {:dependencies
                            [[org.clojure/clojure "1.7.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-8 {:dependencies
                            [[org.clojure/clojure "1.8.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "0.2.1"]]}
              :clojure-1-9 {:dependencies
                            [[org.clojure/clojure "1.9.0"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}
              :clojure-1-10 {:dependencies
                            [[org.clojure/clojure "1.10.1"]
                             [midje "1.9.9" :exclusions [org.clojure/clojure]]
-                            [org.xerial.snappy/snappy-java "1.1.7.3"]
+                            [org.xerial.snappy/snappy-java "1.1.10.7"]
                             [nubank/matcher-combinators "1.2.1"]]}}
 
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :test-paths ["test/"]
 
-  :javac-options ["-target" "1.8" "-source" "1.8"])
+  :javac-options ["--release" "11"])

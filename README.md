@@ -17,8 +17,10 @@ Abracad is available on Clojars.  Add this `:dependency` to your
 Leiningen `project.clj`:
 
 ```clj
-[nubank/abracad "0.4.15"]
+[nubank/abracad "0.5.0"]
 ```
+
+Abracad 0.5.0 and later requires Java 11 or newer. Use 0.4.17 on Java 8.
 
 ## Usage
 

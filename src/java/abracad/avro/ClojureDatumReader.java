@@ -30,17 +30,17 @@ private static class Vars {
 
 public
 ClojureDatumReader() {
-    super(null, null);
+    super(null, null, ClojureData.get());
 }
 
 public
 ClojureDatumReader(Schema schema) {
-    super(schema, schema);
+    super(schema, schema, ClojureData.get());
 }
 
 public
 ClojureDatumReader(Schema writer, Schema reader) {
-    super(writer, reader);
+    super(writer, reader, ClojureData.get());
 }
 
 @Override
