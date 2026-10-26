@@ -185,7 +185,7 @@ input and output directly to and from Clojure data structures.
 ## Releasing
 
 Set the release version in `project.clj`, merge it to `master`, and push a
-tag with that version (for example `0.4.18`). The Release workflow runs the
+tag with that version (for example `0.5.0`). The Release workflow runs the
 tests and publishes the jar to Clojars.
 
 ## License
